@@ -1,0 +1,188 @@
+
+.main {
+  height: 90vh;
+  padding: 2rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+}
+
+.shopping {
+  background: linear-gradient(125deg, #ffffff, #b3e5e6);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+  position: relative;
+  width: 80vw;
+  height: 95vh;
+  margin: auto;
+  padding: 1em;
+  text-align: center;
+  justify-content: center;  
+  border-radius: 5px;
+}
+
+.selectedStore{
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1px 20px;
+  border-radius: 5px;
+}
+.selectedStore:hover{
+  background-color: #b3e5e6;
+}
+
+
+.mainDropDown{
+  position: relative;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 3rem;
+  z-index: 1;
+}
+.mainDropDown ul{
+  width: 100%;
+}
+
+
+.dropDown {
+    align-items: center;
+    justify-content: center;
+    background-color:  rgb(118, 220, 238);
+    position:absolute;
+    display: block;
+    top: 2rem;
+    right:15%; 
+    width: 70%;
+    border-radius: 10px;
+    padding:.6rem;
+
+}
+
+.storeLists{
+  font-family: sans-serif;
+  text-align: left;
+  font-size: 1rem;
+  padding: 0 6px;
+  border-radius: 5px;
+  position: relative;
+  margin: 0;
+  width: 100%;
+
+}
+.storeLists:hover{
+  background-color: #b3e5e6;
+}
+
+
+
+.deleteicon{
+  position: absolute;
+  right: 5px;
+}
+.editicon{
+  position: absolute;
+  right: 25px;
+}
+
+.inputItems{
+  position: relative;
+}
+
+.addIcon{
+  position: absolute;
+  font-size: 20px;
+  right: 63px;
+  bottom: 6px;
+}
+
+
+.listContainer{
+  position: relative;
+  height: 430px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column ;
+  text-align: left;
+  padding: 1rem;
+}
+
+.listItems{
+  position: relative;
+  margin-left: 1.7rem;
+}
+
+.deleteItemIcon{
+  position: relative;
+  top: 2.5px;
+  margin: 0 1px;
+}
+
+.editItemIcon{
+  position: absolute;
+  left: -35px;
+  top: .8px;
+  font-size: 1.1rem;
+
+}
+
+.arrowIcon{
+  position: absolute;
+  left: -1px;
+  font-size: 1rem;
+}
+
+.moveUpIcon{
+  position: relative;
+  top: 2.5px;
+  font-size: .9rem;
+  margin: 0 1px;
+}
+.clearDoneIcon{
+  font-size: 1.2em;
+  position: absolute;
+  left: 4.7em;
+}
+
+@media (max-width: 700px) and (min-width: 600px) {
+  .shopping{
+    max-width: 70vw;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    position: relative;
+    margin: 32px;
+    height: calc(80vh - 17px);
+
+  }
+  
+}
+@media (max-width: 1000px) and (min-width: 700px) {
+  .shopping{
+    max-width: 50vw;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    position: relative;
+    margin: 32px;
+    height: calc(80vh - 17px);
+  }
+  
+}
+@media (min-width: 1000px) {
+  .shopping{
+    max-width: 35vw;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); 
+    position: relative;
+    margin: 32px;
+    height: calc(80vh - 17px);
+  }
+  
+}
