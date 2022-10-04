@@ -10,12 +10,12 @@ function Store({ store, id, delet, edit, selected }) {
   function editStore(e) {
     e.preventDefault();
     e.stopPropagation();
-    const reqLength = inputRef.current.value.length;
-    if (reqLength > 2) {
+    const reqLength = inputRef.current.value;
+    if (/[a-zA-Z]/.test(reqLength)) {
       setEdit(true);
       edit(id, inputRef.current.value);
     } else {
-      window.alert("Store name should be 2-10 characters");
+      window.alert("Store name should contain at least one character");
     }
   }
 
@@ -44,7 +44,6 @@ function Store({ store, id, delet, edit, selected }) {
             type="text"
             placeholder={store}
             ref={inputRef}
-            required
           />
           <button hidden type="submit" onClick={editStore} />
         </form>

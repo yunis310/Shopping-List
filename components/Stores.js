@@ -6,19 +6,23 @@ import {
   deleteDoc,
   doc,
   updateDoc,
+  collection,
 } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 import { db } from "../firebase";
 import Data from "../pages/Data";
 import Store from "./Store";
+import { async } from "@firebase/util";
 
-function Stores() {
+function Stores({ stores }) {
   const [isActive, setIsActive] = useState(false);
-  const { stores, collectionRef, sellectedStore, setSellectedStore } =
-    useContext(Data);
+  const { sellectedStore, setSellectedStore } = useContext(Data);
+  const collectionRef = collection(db, "stores");
+
   const inputRef = useRef(null);
   const dropdown = useRef(null);
 
+  // close all open windows
   useEffect(() => {
     if (!isActive) return;
     function handleClick(e) {
@@ -51,19 +55,27 @@ function Stores() {
   }
 
   // Add Store
+
   async function addStore(e) {
-    const reqLength = inputRef.current.value.length;
+    const doesItExist = await stores.find((store) => {
+      return store.name === inputRef.current.value;
+    });
+    const reqLength = inputRef.current.value;
     e.preventDefault();
-    if (reqLength > 2) {
-      await addDoc(collectionRef, {
-        name: inputRef.current.value,
-        list: [],
-        done: [],
-        timestamp: serverTimestamp(),
-      });
-      inputRef.current.value = "";
+    if (/[a-zA-Z]/.test(reqLength)) {
+      if (!doesItExist) {
+        await addDoc(collectionRef, {
+          name: inputRef.current.value,
+          list: [],
+          done: [],
+          timestamp: serverTimestamp(),
+        });
+        inputRef.current.value = "";
+      } else {
+        window.alert("Store already exist");
+      }
     } else {
-      window.alert("Store name should be 2-10 characters");
+      window.alert("Store name should contain at least one character");
     }
   }
 
@@ -78,6 +90,7 @@ function Stores() {
   async function editStore(id, value) {
     const docRef = doc(db, "stores", id);
     await updateDoc(docRef, { name: value, timestamp: serverTimestamp() });
+    console.log("Store was edited sucssesfully");
   }
   const variants = {
     open: { y: 0, display: 1, scale: 1 },

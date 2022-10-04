@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import Data from "../pages/Data";
+import React, { useState } from "react";
 import ListItem from "./ListItem";
 import styles from "../styles/Home.module.css";
 import { AiOutlineArrowUp, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
@@ -9,12 +8,14 @@ import {
   arrayRemove,
   arrayUnion,
   deleteField,
+  collection,
 } from "firebase/firestore";
 import { motion } from "framer-motion";
+import { db } from "../firebase";
 
-function Lists() {
-  const { stores, collectionRef } = useContext(Data);
+function Lists({ stores }) {
   const [isDoneActive, setIsDoneActive] = useState(false);
+  const collectionRef = collection(db, "stores");
 
   async function deletItem(id, name) {
     const docRef = doc(collectionRef, id);
